@@ -1,10 +1,32 @@
 {
   "services": [
     {
-      "name": "whoami",
-      "image": "traefik/whoami:v1.11.0",
+      "name": "homarr",
+      "image": "ghcr.io/homarr-labs/homarr:latest",
       "isMain": true,
-      "internalPort": "80"
+      "internalPort": 7575,
+      "environment": {
+        "TZ": "${TZ}"
+      },
+      "volumes": [
+        {
+          "hostPath": "${APP_DATA_DIR}/data/config",
+          "containerPath": "/app/data/configs"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/icons",
+          "containerPath": "/app/public/icons"
+        },
+        {
+          "hostPath": "${APP_DATA_DIR}/data/dashboard",
+          "containerPath": "/data"
+        },
+        {
+          "hostPath": "/var/run/docker.sock",
+          "containerPath": "/var/run/docker.sock"
+        }
+      ]
     }
-  ]
+  ],
+  "$schema": "../dynamic-compose-schema.json"
 }
