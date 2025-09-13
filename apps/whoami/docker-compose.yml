@@ -9,6 +9,7 @@ services:
       - ${APP_DATA_DIR}/data/dashboard:/data
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
+      - SECRET_ENCRYPTION_KEY=0099e3f34039bcbd9897eb00c4f43f30705a7259acb63c4397e7e363be6cb3d7
       - TZ=${TZ}
     ports:
       - ${APP_PORT}:7575
